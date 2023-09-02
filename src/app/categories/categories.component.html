@@ -8,17 +8,31 @@
         #categoryForm="ngForm"
         (ngSubmit)="onSubmit(categoryForm)"
       >
-        <div class="form-group col-md-10">
+        <div class="col-md-10">
           <input
             type="text"
-            class="from-control shadow-effect"
+            class="form-control"
             placeholder="Add New Categories"
             name="category"
+            #newCategory="ngModel"
             ngModel
+            required
+            [ngClass]="{
+              'is-invalid': newCategory.invalid && newCategory.touched
+            }"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="newCategory.invalid && newCategory.touched"
+          >
+            Category field is required!
+          </div>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-block btn-info mb-2 btn-theme">
+          <button
+            class="btn btn-block btn-info mb-1 btn-theme"
+            [disabled]="categoryForm.invalid"
+          >
             Add Category
           </button>
         </div>
