@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-new-post',
@@ -9,8 +10,15 @@ export class NewPostComponent implements OnInit {
   permalink: string = '';
   imgSrc: any = './assets/placeholder.png';
   selectedImg: any;
-  constructor() {}
-  ngOnInit(): void {}
+  categories: Array<any> = [];
+
+  constructor(private categoriesService: CategoriesService) {}
+
+  ngOnInit(): void {
+    this.categoriesService.loadData().subscribe((val) => {
+      this.categories = val;
+    });
+  }
 
   onTitleChanged($event: any) {
     const title = $event.target.value;

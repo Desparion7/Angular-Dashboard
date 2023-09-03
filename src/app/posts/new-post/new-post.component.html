@@ -16,7 +16,12 @@
             </div>
             <div class="form-group">
               <label for="">Permalink</label>
-              <input type="text" name="permalink" [(ngModel)]="permalink"disabled />
+              <input
+                type="text"
+                name="permalink"
+                [(ngModel)]="permalink"
+                disabled
+              />
             </div>
             <div class="form-group">
               <label for="">Excerpt</label>
@@ -30,12 +35,20 @@
           <label for="">Please Select a post category</label>
           <select class="form-control">
             <option value="" disabled>Please select a category</option>
+            <option *ngFor="let category of categories" value="">
+              {{ category.data.category }}
+            </option>
           </select>
         </div>
         <div class="form-group">
           <label for="">Post Image</label>
-          <img [src]="imgSrc" class="form-control img-fluid img-preview" >
-          <input class="form-control" type="file" accept="image/*" (change)="showPreview($event)"/>
+          <img [src]="imgSrc" class="form-control img-fluid img-preview" />
+          <input
+            class="form-control"
+            type="file"
+            accept="image/*"
+            (change)="showPreview($event)"
+          />
         </div>
       </div>
     </div>
